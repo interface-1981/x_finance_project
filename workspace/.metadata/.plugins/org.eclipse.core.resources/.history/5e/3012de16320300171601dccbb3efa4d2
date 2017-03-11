@@ -1,0 +1,24 @@
+package product.types;
+
+public  enum RateIndex {
+	JPTI1M(1, "1m", "JPTI"),
+	JPTI3M(3, "3m", "JPTI"),
+	JPTI6M(6, "6m", "JPTI"),
+	JPTI12M(12, "12m", "JPTI"),
+
+	JPLI1M(1, "1m", "JPLI"),
+	JPLI3M(3, "3m", "JPLI"),
+	JPLI6M(6, "6m", "JPLI"),
+	JPLI12M(12, "12m", "JPLI");
+
+	public int termNum;
+	public String termStr;
+	public String marketID;
+
+	private RateIndex(int termNum, String termStr, String marketID) {
+
+		this.termNum = termNum;
+		this.termStr = termStr;
+		this.marketID = marketID;
+	}
+}

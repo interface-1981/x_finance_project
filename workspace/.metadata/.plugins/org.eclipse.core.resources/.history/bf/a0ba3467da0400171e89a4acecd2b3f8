@@ -1,0 +1,220 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<script type="text/javascript">
+
+
+
+  function rateTypeChange(){
+	  radio = document.getElementsByName('fixOrFloat');
+	  if(radio[0].checked) {
+	    document.getElementById('fixed-form').style.display = "";
+	    document.getElementById('float-form').style.display = "none";
+	  }else if(radio[1].checked) {
+
+	    document.getElementById('fixed-form').style.display = "none";
+	    document.getElementById('float-form').style.display = "";
+	  }
+  }
+
+  function cahngeAmortType(){
+	  var value = document.getElementsByName('amortType')[0].value
+	  if(value == 'Amount') {
+
+	    document.getElementById('amort-amount-form').style.display = "";
+	    document.getElementById('amort-rate-form').style.display = "none";
+	    document.getElementById('amort-frequency-form').style.display = "";
+	  }else if(value == 'Rate') {
+
+	    document.getElementById('amort-amount-form').style.display = "none";
+	    document.getElementById('amort-rate-form').style.display = "";
+	    document.getElementById('amort-frequency-form').style.display = "";
+	  }else {
+
+	    document.getElementById('amort-amount-form').style.display = "none";
+	    document.getElementById('amort-rate-form').style.display = "none";
+	    document.getElementById('amort-frequency-form').style.display = "none";
+	  }
+  }
+  function generateCashflow(){
+		document.getElementById('cash-form').action = "/banking-web/cash/generate";
+		document.getElementById('cash-form').submit;
+
+  }
+
+//オンロードさせ、リロード時に選択を保持
+$(window).on('load', rateTypeChange);
+$(window).on('load', cahngeAmortType);
+
+</script>
+
+<s:form id="cash-form" cssClass="form-horizontal" action="/cash/generate">
+  <div class="form-group">
+    <div class="col-sm-10">
+      <div  class="col-sm-12" >
+        <div  class="col-sm-12" >
+        <div class="col-sm-12" style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
+            <label class="control-label">TradeID:</label>
+            <label class="control-label">
+              <s:property value="%{zeroToBlank(tradeID)}"/>
+              <s:hidden property="tradeID" name="tradeID"/>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6" >
+        <div  class="col-sm-12">
+          <div class="col-sm-4">
+            <label class="control-label">CounterpartyID:</label>
+          </div>
+          <div class="col-sm-8">
+            <s:textfield name="counterpartyID" cssClass="form-control" />
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label">StartDate:</label>
+          </div>
+          <div class="col-sm-8">
+            <div class="input-group date" data-date="%{startDate}"  data-date-format="yyyy/mm/dd">
+              <s:textfield name="startDate" cssClass="form-control" value="%{toString(startDate)}"/>
+              <span class="input-group-addon"><span class="add-on glyphicon glyphicon-th"></span></span>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label">MaturityDate:</label>
+          </div>
+          <div class="col-sm-8">
+            <div class="input-group date" data-date="%{maturityDate}"  data-date-format="yyyy/mm/dd">
+              <s:textfield name="maturityDate" cssClass="form-control" value="%{toString(maturityDate)}"/>
+              <span class="input-group-addon"><span class="add-on glyphicon glyphicon-th"></span></span>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label">Position:</label>
+          </div>
+          <div class="col-sm-8" class="form-group">
+            <s:radio name="loanOrDeposit" listKey="payOrRec" listValue="position" list="loanOrDepositList" class="radio-inline" />
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label">Currency:</label>
+          </div>
+          <div class="col-sm-8">
+            <s:select name="currency" list="currencyList"   cssClass="form-control"/>
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label">PrincipalAmount:</label>
+          </div>
+          <div class="col-sm-8">
+            <s:textfield name="principalAmount" cssClass="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6" >
+      </div>
+    </div>
+    <div class="col-sm-10" >
+      <div class="col-sm-6">
+        <div class="col-sm-12">
+          <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
+            <label class="control-label" ><h5 style="color: Red;">Rate</h5></label>
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label">FixOrfloat:</label>
+          </div>
+          <div class="col-sm-8" class="form-group">
+            <s:radio name="fixOrFloat"  list="fixOrFloatList" class="radio-inline" onclick="rateTypeChange()"/>
+          </div>
+          <div id="fixed-form">
+            <div class="col-sm-4">
+              <label class="control-label">RateIndex:</label>
+            </div>
+            <div class="col-sm-8" class="form-group">
+              <s:select name="rateIndex" listKey="rateIndexID" listValue="rateIndexID" list="rateIndexList" class="form-control" />
+            </div>
+          </div>
+          <div id="float-form">
+            <div class="col-sm-4">
+              <label class="control-label">Rate:</label>
+            </div>
+            <div class="col-sm-8">
+              <s:textfield name="rate" cssClass="form-control" />
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label">Spread:</label>
+
+          </div>
+          <div class="col-sm-8">
+            <s:textfield name="spread" cssClass="form-control" />
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="col-sm-12">
+          <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
+            <label class="control-label" ><h5 style="color: Red;">Amortization</h5></label>
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label">AmortType:</label>
+          </div>
+          <div class="col-sm-8">
+            <s:select name="amortType" list="amortTypeList"  cssClass="form-control" onchange="cahngeAmortType()"/>
+          </div>
+          <div id="amort-rate-form">
+            <div class="col-sm-4">
+              <label class="control-label">AmortRate:</label>
+            </div>
+            <div class="col-sm-8">
+              <s:textfield name="amortRate" cssClass="form-control" />
+            </div>
+          </div>
+          <div id="amort-amount-form">
+            <div class="col-sm-4">
+              <label class="control-label">AmortAmount:</label>
+            </div>
+            <div class="col-sm-8">
+              <s:textfield name="amortAmount" cssClass="form-control" />
+            </div>
+          </div>
+          <div id="amort-frequency-form">
+            <div class="col-sm-4">
+            <label class="control-label">AmortFrequency:</label>
+            </div>
+            <div class="col-sm-8">
+              <s:select name="amortFrequency" listKey="termKey" listValue="termStr" list="termList" cssClass="form-control"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="col-sm-12">
+          <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
+            <label class="control-label" ><h5 style="color: Red;">Payment</h5></label>
+          </div>
+          <div class="col-sm-4">
+            <label class="control-label">PaymentFrequency:</label>
+          </div>
+          <div class="col-sm-8">
+            <s:select name="paymentFrequency" listKey="termKey" listValue="termStr" list="termList" cssClass="form-control"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="col-sm-12">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-10">
+      <div class="col-sm-12">
+        <div class="col-sm-12">
+          <div class="col-sm-12"  style="border-top : solid 1px #bbbbbb; padding-top: 15px; margin-top: 15px;">
+            <s:submit value="Save" cssClass="btn btn-primary"/>
+            <s:submit value="GenerateCashflow" cssClass="btn btn-primary"/>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</s:form>

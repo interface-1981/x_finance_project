@@ -1,0 +1,52 @@
+package web.action.product;
+
+import java.util.List;
+
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+
+import com.opensymphony.xwork2.ModelDriven;
+
+import product.model.Cash;
+import product.model.ProductService;
+import web.common.CommonConstant;
+
+@Namespace("/")
+@ParentPackage("tiles-default")
+@Results({
+@Result(name = "success", location = "cash-view", type="tiles")
+})
+public class TradeSummery extends AbstractAction implements ModelDriven<Cash>{
+
+    public int tradeid;
+    public List<String> currencyList = CommonConstant.CURRENCY_LIST;
+    private Cash cash = new Cash();
+
+    public String execute() throws Exception {
+    	if(tradeid == 0) {
+
+    	} else {
+    		cash.initialize(tradeid);
+    	}
+        return "success";
+    }
+
+    @Action("/cash/regist")
+    public String regist() throws Exception {
+
+    	ProductService ps = ProductService.getInstance();
+    	ps.save(this.cash);
+        return "success";
+    }
+
+	@Override
+	public Cash getModel() {
+		// TODO 自動生成されたメソッド・スタブ
+
+		return cash;
+	}
+
+}

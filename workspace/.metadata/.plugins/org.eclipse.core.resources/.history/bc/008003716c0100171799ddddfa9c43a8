@@ -1,0 +1,69 @@
+package product.dto;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+public class TradeSummeryFilter {
+
+	private Date startDateFrom;
+	private Date startDateTo;
+
+	private Date expiryDateFrom;
+	private Date expiryDateTo;
+
+	private String product;
+
+	private String status;
+
+	public Date getStartDateFrom() {
+		return startDateFrom;
+	}
+
+	public void setStartDateFrom(Date startDateFrom) {
+		this.startDateFrom = startDateFrom;
+	}
+
+	public Date getStartDateTo() {
+		return startDateTo;
+	}
+
+	public void setStartDateTo(Date startDateTo) {
+		this.startDateTo = startDateTo;
+	}
+
+	public Date getExpiryDateFrom() {
+		return expiryDateFrom;
+	}
+
+	public void setExpiryDateFrom(Date expiryDateFrom) {
+		this.expiryDateFrom = expiryDateFrom;
+	}
+
+	public Date getExpiryDateTo() {
+		return expiryDateTo;
+	}
+
+	public void setExpiryDateTo(Date expiryDateTo) {
+		this.expiryDateTo = expiryDateTo;
+	}
+
+	public String getProduct() {
+		return product;
+	}
+
+	public void setProduct(String product) {
+		this.product = product;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+
+}

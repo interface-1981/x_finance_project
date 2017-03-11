@@ -1,0 +1,10 @@
+package product.constants;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+public class CoomonConstants {
+
+	public static final Date MAX_DATE = new GregorianCalendar(9999, Calendar.DECEMBER, 31).getTime();
+}

@@ -1,0 +1,41 @@
+package web.action.product;
+
+import java.util.Date;
+import java.util.List;
+
+import org.apache.struts2.convention.annotation.Action;
+import org.apache.struts2.convention.annotation.Namespace;
+import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
+
+import product.dto.TradeSummery;
+import product.dto.TradeSummeryFilter;
+import product.model.ProductService;
+
+@Namespace("/")
+@ParentPackage("tiles-default")
+@Results({
+@Result(name = "success", location = "trade-summery-view", type="tiles")
+})
+public class TradeSummeryAction extends AbstractAction {
+
+    public List<TradeSummery> list;
+    public TradeSummeryFilter filter;
+
+    @Action("/trade/summery")
+    public String execute() throws Exception {
+    	//this.userId = this.sessionMap.get("userId").toString();
+    	filter = new TradeSummeryFilter();
+    	filter.setStartDateFrom(new Date());
+    	ProductService ps = ProductService.getInstance();
+    	this.list = ps.getTradeSummery();
+        return "success";
+    }
+
+    public String getUrl(String product, String tradeID) {
+
+    	return "/banking-web/" + product.toLowerCase() + "?tradeid=" + tradeID;
+    }
+
+}

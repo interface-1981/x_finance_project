@@ -1,0 +1,147 @@
+package product.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+
+import product.entity.Cashflow.CashflowPK;
+
+@Entity
+public class Reset implements Serializable {
+
+	private ResetPK resetPK;
+	private Date RateFixDate;
+	private Date StartDate;
+	private Date EndDate;
+	private double ContractRate;
+	private double Spread;
+
+	private Cashflow cashflow;
+
+	public Reset() {
+
+	}
+
+
+	@Id
+	public ResetPK getResetPK() {
+		return resetPK;
+	}
+
+	public void setResetPK(ResetPK resetPK) {
+		this.resetPK = resetPK;
+	}
+
+	public Date getRateFixDate() {
+		return RateFixDate;
+	}
+
+	public void setRateFixDate(Date rateFixDate) {
+		RateFixDate = rateFixDate;
+	}
+
+	public Date getStartDate() {
+		return StartDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		StartDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return EndDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		EndDate = endDate;
+	}
+
+	public double getContractRate() {
+		return ContractRate;
+	}
+
+	public void setContractRate(double contractRate) {
+		ContractRate = contractRate;
+	}
+
+	public double getSpread() {
+		return Spread;
+	}
+
+	public void setSpread(double spread) {
+		Spread = spread;
+	}
+
+	@ManyToOne
+    @JoinColumns( {
+        @JoinColumn(name = "tradeid", referencedColumnName = "tradeid", insertable = false, updatable = false),
+        @JoinColumn(name = "versionnumber", referencedColumnName = "versionnumber", insertable = false, updatable = false),
+        @JoinColumn(name = "legnumber", referencedColumnName = "legnumber", insertable = false, updatable = false),
+        @JoinColumn(name = "cashflownumber", referencedColumnName = "legnumber", insertable = false, updatable = false)
+
+    })
+	public Cashflow getCashflow() {
+		return cashflow;
+	}
+
+	public void setCashflow(Cashflow cashflow) {
+		this.cashflow = cashflow;
+	}
+
+	@Embeddable
+	public static class ResetPK implements Serializable{
+
+		private CashflowPK crashflowPK;
+		private int ResetNumber;
+		public CashflowPK getCrashflowPK() {
+			return crashflowPK;
+		}
+		public void setCrashflowPK(CashflowPK crashflowPK) {
+			this.crashflowPK = crashflowPK;
+		}
+		public int getResetNumber() {
+			return ResetNumber;
+		}
+		public void setResetNumber(int resetNumber) {
+			ResetNumber = resetNumber;
+		}
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ResetNumber;
+			result = prime * result + ((crashflowPK == null) ? 0 : crashflowPK.hashCode());
+			return result;
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			ResetPK other = (ResetPK) obj;
+			if (ResetNumber != other.ResetNumber)
+				return false;
+			if (crashflowPK == null) {
+				if (other.crashflowPK != null)
+					return false;
+			} else if (!crashflowPK.equals(other.crashflowPK))
+				return false;
+			return true;
+		}
+		@Override
+		public String toString() {
+			return "ResetPK [crashflowPK=" + crashflowPK + ", ResetNumber=" + ResetNumber + "]";
+		}
+	}
+}
+

@@ -1,0 +1,31 @@
+package web.action.product;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionSupport;
+
+import web.helper.Format;
+
+public class AbstractAction extends ActionSupport implements ServletResponseAware,SessionAware, Action {
+
+    private static final long serialVersionUID = 1L;
+
+    public Format format = new Format();
+    public HttpServletResponse response;
+
+    public void setServletResponse(HttpServletResponse response) {
+        this.response = response;
+    }
+
+    public Map sessionMap;
+
+    public void setSession(Map sessionMap) {
+        this.sessionMap = sessionMap;
+    }
+}

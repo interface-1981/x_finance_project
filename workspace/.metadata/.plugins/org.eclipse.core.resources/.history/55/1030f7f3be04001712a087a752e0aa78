@@ -1,0 +1,6 @@
+package product.types;
+
+public  enum AmortType {
+	Amount,
+	Rate
+}

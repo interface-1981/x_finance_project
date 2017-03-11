@@ -1,0 +1,121 @@
+-- Table: public.trade
+
+-- DROP TABLE public.trade;
+
+CREATE TABLE public.trade
+(
+    tradeid integer NOT NULL,
+    versionnumber integer NOT NULL,
+    product character varying COLLATE pg_catalog."default",
+    startdate date,
+    maturitydate date,
+    expirydate date,
+    counterpartyid character varying COLLATE pg_catalog."default",
+    status character varying COLLATE pg_catalog."default",
+    audittimestamp timestamp with time zone,
+    CONSTRAINT trade_pkey PRIMARY KEY (tradeid, versionnumber)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.trade
+    OWNER to postgres;
+
+-- Table: public.leg
+
+-- DROP TABLE public.leg;
+
+CREATE TABLE public.leg
+(
+    tradeid integer NOT NULL,
+    versionnumber integer NOT NULL,
+    legnumber integer NOT NULL,
+    currency character varying COLLATE pg_catalog."default",
+    payorrec character varying COLLATE pg_catalog."default",
+    fixorfloat character varying COLLATE pg_catalog."default",
+    rate double precision,
+    principalamount integer,
+    interestfrequency character varying COLLATE pg_catalog."default",
+    amortfrequency character varying COLLATE pg_catalog."default",
+    CONSTRAINT leg_pkey PRIMARY KEY (legnumber, versionnumber, tradeid)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.leg
+    OWNER to postgres;
+
+-- Table: public.cashflow
+
+-- DROP TABLE public.cashflow;
+
+CREATE TABLE public.cashflow
+(
+    tradeid integer NOT NULL,
+    versionnumber integer NOT NULL,
+    legnumber integer NOT NULL,
+    cashflownumber integer NOT NULL,
+    cashflowtype character varying COLLATE pg_catalog."default",
+    paydate date,
+    payamount integer,
+    principalamount integer,
+    CONSTRAINT _pkey PRIMARY KEY (cashflownumber, legnumber, versionnumber, tradeid)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.cashflow
+    OWNER to postgres;
+
+-- Table: public.reset
+
+-- DROP TABLE public.reset;
+
+CREATE TABLE public.reset
+(
+    tradeid integer NOT NULL,
+    versionnumber integer NOT NULL,
+    legnumber integer NOT NULL,
+    cashflownumber integer NOT NULL,
+    ratefixdate date,
+    startdate date,
+    enddate date,
+    contractrate double precision,
+    spread double precision,
+    CONSTRAINT reset_pkey PRIMARY KEY (cashflownumber, legnumber, versionnumber, tradeid)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.reset
+    OWNER to postgres;
+
+-- Table: public.option
+
+-- DROP TABLE public.option;
+
+CREATE TABLE public.option
+(
+    tradeid integer NOT NULL,
+    versionnumber integer NOT NULL,
+    putorcall character varying COLLATE pg_catalog."default",
+    startdate date,
+    enddate date,
+    strikerate double precision,
+    CONSTRAINT option_pkey PRIMARY KEY (tradeid, versionnumber)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.option
+    OWNER to postgres;

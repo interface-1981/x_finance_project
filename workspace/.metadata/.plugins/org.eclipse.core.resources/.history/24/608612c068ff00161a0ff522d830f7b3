@@ -1,0 +1,29 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+
+<table class="table table-striped">
+  <tr>
+    <th>TradeID</th>
+    <th>Product</th>
+    <th>CounterpartyID</th>
+    <th>StartDate</th>
+    <th>MaturityDate</th>
+    <th>ExpiryDate</th>
+
+  </tr>
+
+  <s:iterator value="list">
+    <tr>
+      <td><s:property value="tradeID" /></td>
+      <td><s:property value="product" /></td>
+      <td><s:property value="counterpartyID" /></td>
+      <td><s:property value="startDate" /></td>
+      <td><s:property value="maturityDate" /></td>
+      <td><s:property value="expiryDate" /></td>
+
+    </tr>
+  </s:iterator>
+</table>
+
+

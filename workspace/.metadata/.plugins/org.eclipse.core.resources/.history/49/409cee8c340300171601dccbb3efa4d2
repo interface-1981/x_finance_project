@@ -1,0 +1,7 @@
+package product.types;
+
+public  enum CashflowTypes {
+	Principal,
+	FloatInterest,
+	FixedInterest
+}
