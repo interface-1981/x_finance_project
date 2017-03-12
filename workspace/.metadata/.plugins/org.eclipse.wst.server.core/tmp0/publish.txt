@@ -1,2 +1,0 @@
-#Tomcat publish data
-#Sat Mar 11 11:09:53 JST 2017

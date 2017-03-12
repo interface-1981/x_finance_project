@@ -36,7 +36,7 @@
 	  }
   }
   function generateCashflow(){
-		document.getElementById('cash-form').action = "/banking-web/cash/generate-cashflow";
+		document.getElementById('cash-form').action = "/finance-web/cash/generate-cashflow";
 		document.getElementById('cash-form').submit;
 
   }
@@ -74,7 +74,7 @@ $(window).on('load', cahngeAmortType);
           </div>
           <div class="col-sm-8">
             <div class="input-group date" data-date="%{startDate}"  data-date-format="yyyy/mm/dd">
-              <s:textfield name="startDate" cssClass="form-control" value="%{toString(startDate)}" />
+              <s:textfield name="startDate" cssClass="form-control date-form" value="%{toString(startDate)}" />
               <span class="input-group-addon"><span class="add-on glyphicon glyphicon-th"></span></span>
             </div>
           </div>
@@ -83,7 +83,7 @@ $(window).on('load', cahngeAmortType);
           </div>
           <div class="col-sm-8">
             <div class="input-group date" data-date="%{maturityDate}"  data-date-format="yyyy/mm/dd">
-              <s:textfield name="maturityDate" cssClass="form-control"  value="%{toString(maturityDate)}" />
+              <s:textfield name="maturityDate" cssClass="form-control date-form"  value="%{toString(maturityDate)}" />
               <span class="input-group-addon"><span class="add-on glyphicon glyphicon-th"></span></span>
             </div>
           </div>
@@ -202,7 +202,94 @@ $(window).on('load', cahngeAmortType);
         </div>
       </div>
     </div>
-    <div class="col-sm-10">
+    <div class="col-sm-12">
+      <div class="col-sm-12">
+        <div class="col-sm-12">
+          <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
+            <label class="control-label" ><h5 style="color: Red;">Cashflow</h5></label>
+          </div>
+          <s:if test="%{existsCashflow()}">
+          <table>
+            <tr>
+              <th>
+                CashflowType
+              </th>
+              <th>
+                PayDate
+              </th>
+              <th>
+                PayAmount
+              </th>
+              <th>
+                PrincipalAmount
+              </th>
+              <th>
+                AmortAmount
+              </th>
+              <th>
+                RateFixDate
+              </th>
+              <th>
+                StartDate
+              </th>
+              <th>
+                EndDate
+              </th>
+              <th>
+                ContractRate
+              </th>
+              <th>
+                Spread
+              </th>
+            </tr>
+            <s:iterator value="cashflows" status="cfl">
+              <tr>
+                <td valign="top">
+                  <s:textfield name="cashflows[%{#cfl.index}].cashflowType" cssClass="form-control"/>
+                </td>
+                <td valign="top">
+                  <s:textfield name="cashflows[%{#cfl.index}].payDate" cssClass="form-control" value="%{toString(payDate)}"/>
+                </td>
+                <td valign="top">
+                  <s:textfield name="cashflows[%{#cfl.index}].payAmount" cssClass="form-control"/>
+                </td>
+                <td valign="top">
+                  <s:textfield name="cashflows[%{#cfl.index}].principalAmount" cssClass="form-control"/>
+                </td>
+                <td valign="top">
+                  <s:textfield name="cashflows[%{#cfl.index}].amortAmount" cssClass="form-control"/>
+                </td>
+                <td colspan="5">
+                  <s:iterator value="resets" status="rst">
+                    <table>
+                      <tr>
+                        <td>
+                          <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].rateFixDate" cssClass="form-control" value="%{toString(rateFixDate)}"/>
+                        </td>
+                        <td>
+                          <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].startDate" cssClass="form-control" value="%{toString(startDate)}"/>
+                        </td>
+                        <td>
+                          <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].endDate" cssClass="form-control" value="%{toString(endDate)}"/>
+                        </td>
+                        <td>
+                          <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].contractRate" cssClass="form-control" />
+                        </td>
+                        <td>
+                          <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].spread" cssClass="form-control" />
+                        </td>
+                      </tr>
+                    </table>
+                  </s:iterator>
+                </td>
+              </tr>
+            </s:iterator>
+          </table>
+          </s:if>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
       <div class="col-sm-12">
         <div class="col-sm-12">
           <div class="col-sm-12"  style="border-top : solid 1px #bbbbbb; padding-top: 15px; margin-top: 15px;">
@@ -212,79 +299,5 @@ $(window).on('load', cahngeAmortType);
         </div>
       </div>
     </div>
-    <div class="col-sm-10">
-      <table>
-        <tr>
-          <th>
-            PayDate
-          </th>
-          <th>
-            PayAmount
-          </th>
-          <th>
-            PrincipalAmount
-          </th>
-          <th>
-            AmortAmount
-          </th>
-          <th>
-            RateFixDate
-          </th>
-          <th>
-            StartDate
-          </th>
-          <th>
-            EndDate
-          </th>
-          <th>
-            ContractRate
-          </th>
-          <th>
-            Spread
-          </th>
-        </tr>
-        <s:iterator value="cashflows" status="cfl">
-          <tr>
-            <td valign="top">
-              <s:textfield name="cashflows[%{#cfl.index}].payDate" cssClass="form-control"/>
-            </td>
-            <td valign="top">
-              <s:textfield name="cashflows[%{#cfl.index}].payAmount" cssClass="form-control"/>
-            </td>
-            <td valign="top">
-              <s:textfield name="cashflows[%{#cfl.index}].principalAmount" cssClass="form-control"/>
-            </td>
-            <td valign="top">
-              <s:textfield name="cashflows[%{#cfl.index}].amortAmount" cssClass="form-control"/>
-            </td>
-            <td colspan="5">
-
-                <s:iterator value="resets" status="rst">
-                              <table>
-                <tr>
-                    <td>
-                      <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].rateFixDate" cssClass="form-control" />
-                    </td>
-                    <td>
-                      <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].startDate" cssClass="form-control" />
-                    </td>
-                    <td>
-                      <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].endDate" cssClass="form-control" />
-                    </td>
-                    <td>
-                      <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].contractRate" cssClass="form-control" />
-                    </td>
-                    <td>
-                      <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].spread" cssClass="form-control" />
-                    </td>
-                                  </tr>
-            </table>
-                </s:iterator>
-
-          </tr>
-        </s:iterator>
-      </table>
-    </div>
-
   </div>
 </s:form>

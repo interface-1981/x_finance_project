@@ -1,0 +1,32 @@
+package service;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class CommonDAO {
+
+	private static CommonDAO commonDAO;
+	private SessionFactory sessionfactory;
+
+	private CommonDAO() {
+
+		Configuration config = new Configuration();
+		config = config.configure();
+		this.sessionfactory = config.buildSessionFactory();
+	}
+
+	public static synchronized CommonDAO getInstance() {
+
+		if (commonDAO == null) {
+			commonDAO = new CommonDAO();
+		}
+		return commonDAO;
+	}
+
+	public Session createSession() {
+
+		return this.sessionfactory.openSession();
+	}
+
+}

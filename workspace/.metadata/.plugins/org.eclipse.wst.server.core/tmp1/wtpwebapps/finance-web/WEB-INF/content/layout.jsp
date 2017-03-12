@@ -65,13 +65,16 @@ body , html {
         $('.date').datepicker({
             autoclose : true
           });
+
+        $('.date-form').blur( function () {
+        	$(this).parent().datepicker("setDate", this.value);
+
+        } );
+        $('.date-form').focus( function () {
+        	$('.date').datepicker('hide')
+        } );
+
     });
-
-    $(document).keydown(function(e){
-    	$('.date').datepicker('hide')
-    	});
-
-    $('input').blur( function () { alert(this.type+' lost focus.'); } );
 
     </script>
 

@@ -14,7 +14,7 @@
           </div>
           <div class="col-sm-5">
             <div class="input-group date" data-date="%{filter.startDateFrom}"  data-date-format="yyyy/mm/dd">
-              <s:textfield name="filter.startDateFrom" cssClass="form-control" value="%{toString(filter.startDateFrom)}"/>
+              <s:textfield name="filter.startDateFrom" cssClass="form-control date-form" value="%{toString(filter.startDateFrom)}"/>
               <span class="input-group-addon"><span class="add-on glyphicon glyphicon-th"></span></span>
             </div>
           </div>
@@ -23,7 +23,7 @@
           </div>
           <div class="col-sm-5">
             <div class="input-group date" data-date="%{filter.startDateTo}"  data-date-format="yyyy/mm/dd">
-              <s:textfield name="filter.startDateTo" cssClass="form-control" value="%{toString(filter.startDateTo)}"/>
+              <s:textfield name="filter.startDateTo" cssClass="form-control date-form" value="%{toString(filter.startDateTo)}"/>
               <span class="input-group-addon"><span class="add-on glyphicon glyphicon-th"></span></span>
             </div>
           </div>
@@ -39,7 +39,7 @@
           </div>
           <div class="col-sm-5">
             <div class="input-group date" data-date="%{filter.expiryDateFrom}"  data-date-format="yyyy/mm/dd">
-              <s:textfield name="filter.expiryDateFrom" cssClass="form-control" value="%{toString(filter.expiryDateFrom)}"/>
+              <s:textfield name="filter.expiryDateFrom" cssClass="form-control date-form" value="%{toString(filter.expiryDateFrom)}"/>
               <span class="input-group-addon"><span class="add-on glyphicon glyphicon-th"></span></span>
             </div>
           </div>
@@ -48,7 +48,7 @@
           </div>
           <div class="col-sm-5">
             <div class="input-group date" data-date="%{filter.expiryDateTo}"  data-date-format="yyyy/mm/dd">
-              <s:textfield name="filter.expiryDateTo" cssClass="form-control" value="%{toString(filter.expiryDateTo)}"/>
+              <s:textfield name="filter.expiryDateTo" cssClass="form-control date-form" value="%{toString(filter.expiryDateTo)}"/>
               <span class="input-group-addon"><span class="add-on glyphicon glyphicon-th"></span></span>
             </div>
           </div>

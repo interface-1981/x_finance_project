@@ -43,7 +43,7 @@ public class TradesummeryAction extends AbstractAction {
 
     public String getUrl(String product, String tradeID) {
 
-    	return "/banking-web/" + product.toLowerCase() + "?tradeid=" + tradeID;
+    	return "/finance-web/" + product.toLowerCase() + "?tradeid=" + tradeID;
     }
 
 }
