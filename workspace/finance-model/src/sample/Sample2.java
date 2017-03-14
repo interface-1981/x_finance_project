@@ -13,9 +13,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import product.entity.Cashflow;
-import product.entity.Leg;
-import product.entity.Trade;
+import finance.product.entity.Cashflow;
+import finance.product.entity.Leg;
+import finance.product.entity.Trade;
 
 public class Sample2 {
 

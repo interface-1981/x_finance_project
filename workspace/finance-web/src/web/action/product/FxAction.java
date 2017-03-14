@@ -7,11 +7,12 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ModelDriven;
 
-import product.model.FX;
-import product.service.ProductService;
+import finance.product.model.FX;
+import finance.product.service.ProductService;
 import web.common.CommonConstant;
 
 @Namespace("/")
@@ -21,6 +22,8 @@ import web.common.CommonConstant;
 })
 public class FxAction extends AbstractAction implements ModelDriven<FX>{
 
+	@Autowired
+	private ProductService productService;
     public int tradeid;
     public List<String> currencyList = CommonConstant.CURRENCY_LIST;
     private FX fx = new FX();
@@ -29,7 +32,7 @@ public class FxAction extends AbstractAction implements ModelDriven<FX>{
     	if(tradeid == 0) {
 
     	} else {
-    		fx.initialize(tradeid);
+    		productService.initialize(this.getModel(), tradeid);
     	}
         return "success";
     }
@@ -37,16 +40,19 @@ public class FxAction extends AbstractAction implements ModelDriven<FX>{
     @Action("/fx/regist")
     public String regist() throws Exception {
 
-    	ProductService ps = ProductService.getInstance();
-    	ps.save(this.fx);
+    	productService.save(this.getModel());
         return "success";
     }
 
 	@Override
 	public FX getModel() {
-		// TODO 自動生成されたメソッド・スタブ
-
+		if(this.fx == null) {
+			this.createModel();
+		}
 		return fx;
 	}
 
+	private void createModel() {
+		this.fx = new FX();
+	}
 }

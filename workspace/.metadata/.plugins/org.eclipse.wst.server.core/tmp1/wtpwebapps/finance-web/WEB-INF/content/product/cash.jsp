@@ -50,7 +50,6 @@ $(window).on('load', cahngeAmortType);
 <s:form id="cash-form" cssClass="form-horizontal" action="/cash/regist">
   <div class="form-group">
     <div class="col-sm-10">
-      <div  class="col-sm-12" >
         <div  class="col-sm-12" >
         <div class="col-sm-12" style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
             <label class="control-label">TradeID:</label>
@@ -59,10 +58,8 @@ $(window).on('load', cahngeAmortType);
               <s:hidden property="tradeID" name="tradeID"/>
             </label>
           </div>
-        </div>
       </div>
       <div class="col-sm-6" >
-        <div  class="col-sm-12">
           <div class="col-sm-4">
             <label class="control-label">CounterpartyID:</label>
           </div>
@@ -91,7 +88,7 @@ $(window).on('load', cahngeAmortType);
             <label class="control-label">Position:</label>
           </div>
           <div class="col-sm-8" class="form-group">
-            <s:radio name="loanOrDeposit" listKey="position" listValue="payOrRec" list="loanOrDepositList" class="radio-inline" />
+            <s:radio name="loanOrDeposit" listKey="position" listValue="position" list="loanOrDepositList" class="radio-inline" />
           </div>
           <div class="col-sm-4">
             <label class="control-label">Currency:</label>
@@ -105,14 +102,12 @@ $(window).on('load', cahngeAmortType);
           <div class="col-sm-8">
             <s:textfield name="principalAmount" cssClass="form-control" />
           </div>
-        </div>
       </div>
       <div class="col-sm-6" >
       </div>
     </div>
     <div class="col-sm-10" >
       <div class="col-sm-6">
-        <div class="col-sm-12">
           <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
             <label class="control-label" ><h5 style="color: Red;">Rate</h5></label>
           </div>
@@ -140,15 +135,12 @@ $(window).on('load', cahngeAmortType);
           </div>
           <div class="col-sm-4">
             <label class="control-label">Spread:</label>
-
           </div>
           <div class="col-sm-8">
             <s:textfield name="spread" cssClass="form-control" />
           </div>
-        </div>
       </div>
       <div class="col-sm-6">
-        <div class="col-sm-12">
           <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
             <label class="control-label" ><h5 style="color: Red;">Amortization</h5></label>
           </div>
@@ -182,10 +174,8 @@ $(window).on('load', cahngeAmortType);
               <s:select name="amortFrequency" listKey="termKey" listValue="termStr" list="termList" cssClass="form-control"/>
             </div>
           </div>
-        </div>
       </div>
       <div class="col-sm-6">
-        <div class="col-sm-12">
           <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
             <label class="control-label" ><h5 style="color: Red;">Payment</h5></label>
           </div>
@@ -195,7 +185,6 @@ $(window).on('load', cahngeAmortType);
           <div class="col-sm-8">
             <s:select name="paymentFrequency" listKey="termKey" listValue="termStr" list="termList" cssClass="form-control"/>
           </div>
-        </div>
       </div>
       <div class="col-sm-6">
         <div class="col-sm-12">
@@ -204,11 +193,10 @@ $(window).on('load', cahngeAmortType);
     </div>
     <div class="col-sm-12">
       <div class="col-sm-12">
-        <div class="col-sm-12">
-          <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
-            <label class="control-label" ><h5 style="color: Red;">Cashflow</h5></label>
-          </div>
-          <s:if test="%{existsCashflow()}">
+        <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
+          <label class="control-label" ><h5 style="color: Red;">Cashflow</h5></label>
+        </div>
+        <s:if test="%{existsCashflow()}">
           <table>
             <tr>
               <th>
@@ -240,6 +228,9 @@ $(window).on('load', cahngeAmortType);
               </th>
               <th>
                 Spread
+              </th>
+              <th>
+                NotionalPrincipal
               </th>
             </tr>
             <s:iterator value="cashflows" status="cfl">
@@ -278,6 +269,9 @@ $(window).on('load', cahngeAmortType);
                         <td>
                           <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].spread" cssClass="form-control" />
                         </td>
+                        <td>
+                          <s:textfield name="cashflows[%{#cfl.index}].resets[%{#rst.index}].notionalPrincipal" cssClass="form-control" />
+                        </td>
                       </tr>
                     </table>
                   </s:iterator>
@@ -285,17 +279,14 @@ $(window).on('load', cahngeAmortType);
               </tr>
             </s:iterator>
           </table>
-          </s:if>
-        </div>
+        </s:if>
       </div>
     </div>
     <div class="col-sm-12">
       <div class="col-sm-12">
-        <div class="col-sm-12">
-          <div class="col-sm-12"  style="border-top : solid 1px #bbbbbb; padding-top: 15px; margin-top: 15px;">
-            <s:submit value="Save" cssClass="btn btn-primary"/>
-            <s:submit value="GenerateCashflow" cssClass="btn btn-primary" onclick="generateCashflow()"/>
-          </div>
+        <div class="col-sm-12"  style="border-top : solid 1px #bbbbbb; padding-top: 15px; margin-top: 15px;">
+          <s:submit value="Save" cssClass="btn btn-primary"/>
+          <s:submit value="GenerateCashflow" cssClass="btn btn-primary" onclick="generateCashflow()"/>
         </div>
       </div>
     </div>

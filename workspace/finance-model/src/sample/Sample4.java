@@ -2,8 +2,9 @@ package sample;
 
 import java.util.Date;
 
-import product.model.FX;
-import service.ProductService;
+import finance.product.model.FX;
+import finance.product.service.ProductService;
+import finance.product.service.ProductServiceImpl;
 
 public class Sample4 {
 
@@ -25,7 +26,7 @@ public class Sample4 {
 			fx.setEffectiveDate(new Date());
 			fx.setStatus("Live");
 
-			ProductService service = new ProductService();
+			ProductService service = new ProductServiceImpl();
 			service.save(fx);
 		}
 	}

@@ -4,12 +4,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-import product.model.Cash;
-import product.types.AmortType;
-import product.types.FixOrFloat;
-import product.types.LoanOrDeposit;
-import product.types.Term;
-import service.ProductService;
+import finance.product.model.Cash;
+import finance.product.service.ProductService;
+import finance.product.service.ProductServiceImpl;
+import finance.product.types.AmortType;
+import finance.product.types.FixOrFloat;
+import finance.product.types.LoanOrDeposit;
+import finance.product.types.Term;
 
 public class Sample5 {
 
@@ -39,7 +40,7 @@ public class Sample5 {
 			cash.setMaturityDate(df.parse("2020/2/14"));
 			cash.setStatus("Live");
 
-			ProductService service = new ProductService();
+			ProductService service = new ProductServiceImpl();
 			service.save(cash);
 //		}
 	}

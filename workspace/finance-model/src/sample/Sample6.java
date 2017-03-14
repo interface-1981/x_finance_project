@@ -3,10 +3,11 @@ package sample;
 import java.text.ParseException;
 import java.util.List;
 
-import product.dto.TradeSummery;
-import product.dto.TradeSummeryFilter;
-import product.model.FX;
-import service.ProductService;
+import finance.product.dto.TradeSummery;
+import finance.product.dto.TradeSummeryFilter;
+import finance.product.model.FX;
+import finance.product.service.ProductService;
+import finance.product.service.ProductServiceImpl;
 
 
 public class Sample6 {
@@ -16,7 +17,7 @@ public class Sample6 {
 
 		FX fx = new FX();
 		System.out.println(fx.getBuyCurrency());
-		ProductService service = new ProductService();
+		ProductService service = new ProductServiceImpl();
 		service.initialize(fx, 23);
 		List<TradeSummery> list = service.getTradeSummery(new TradeSummeryFilter());
 		for(TradeSummery t : list) {

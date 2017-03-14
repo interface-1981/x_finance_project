@@ -7,16 +7,17 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ModelDriven;
 
-import product.model.Cash;
-import product.service.ProductService;
-import product.types.AmortType;
-import product.types.FixOrFloat;
-import product.types.LoanOrDeposit;
-import product.types.RateIndex;
-import product.types.Term;
+import finance.product.model.Cash;
+import finance.product.service.ProductService;
+import finance.product.types.AmortType;
+import finance.product.types.FixOrFloat;
+import finance.product.types.LoanOrDeposit;
+import finance.product.types.RateIndex;
+import finance.product.types.Term;
 import web.common.CommonConstant;
 
 @Namespace("/")
@@ -26,6 +27,8 @@ import web.common.CommonConstant;
 })
 public class CashAction extends AbstractAction implements ModelDriven<Cash>{
 
+	@Autowired
+	private ProductService productService;
     public int tradeid;
     public List<String> currencyList = CommonConstant.CURRENCY_LIST;
     private Cash cash;
@@ -34,7 +37,7 @@ public class CashAction extends AbstractAction implements ModelDriven<Cash>{
     	if(tradeid == 0) {
 
     	} else {
-    		cash.initialize(tradeid);
+    		productService.initialize(this.getModel(), tradeid);
     	}
         return "success";
     }
@@ -42,8 +45,8 @@ public class CashAction extends AbstractAction implements ModelDriven<Cash>{
     @Action("/cash/regist")
     public String regist() throws Exception {
 
-    	ProductService ps = ProductService.getInstance();
-    	ps.save(this.cash);
+
+    	productService.save(this.cash);
         return "success";
     }
 
@@ -55,14 +58,13 @@ public class CashAction extends AbstractAction implements ModelDriven<Cash>{
     }
 	@Override
 	public Cash getModel() {
-		// TODO 自動生成されたメソッド・スタブ
 		if(this.cash == null) {
-			initializeModel();
+			this.createModel();
 		}
 		return cash;
 	}
 
-	private void initializeModel() {
+	private void createModel() {
 		this.cash = new Cash();
 		this.cash.setFixOrFloat(FixOrFloat.Fixed);
 		this.cash.setLoanOrDeposit(LoanOrDeposit.Loan);

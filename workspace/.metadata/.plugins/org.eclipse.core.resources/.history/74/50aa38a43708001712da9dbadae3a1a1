@@ -1,0 +1,17 @@
+package product.service;
+
+import java.util.List;
+
+import product.dto.TradeSummery;
+import product.dto.TradeSummeryFilter;
+import product.model.Product;
+
+public interface ProductService  {
+
+
+	public void save(Product product);
+
+	public List<TradeSummery> getTradeSummery(TradeSummeryFilter filter );
+
+	public void initialize(Product product, int tradeID);
+}

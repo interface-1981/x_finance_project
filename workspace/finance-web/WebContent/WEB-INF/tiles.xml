@@ -39,7 +39,7 @@
       <put-attribute name="body" value="/WEB-INF/content/product/fx.jsp" />
     </definition>
         <definition name="cash-view" extends="base">
-      <put-attribute name="title" value="FX Deal Regist" />
+      <put-attribute name="title" value="Cash Deal Regist" />
       <put-attribute name="body" value="/WEB-INF/content/product/cash.jsp" />
     </definition>
     <definition name="trade-summery-view" extends="base">

@@ -74,6 +74,10 @@ body , html {
         	$('.date').datepicker('hide')
         } );
 
+        $(".date-form").each(function() {
+        	$(this).parent().datepicker("setDate", $(this).val());
+        });
+
     });
 
     </script>

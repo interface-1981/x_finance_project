@@ -10,7 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import product.entity.Trade;
+import finance.product.entity.Trade;
 
 public class Sample1 {
 
