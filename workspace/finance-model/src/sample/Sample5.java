@@ -5,8 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import finance.product.model.Cash;
+import finance.product.model.impl.CashImpl;
 import finance.product.service.ProductService;
-import finance.product.service.ProductServiceImpl;
+import finance.product.service.impl.ProductServiceImpl;
 import finance.product.types.AmortType;
 import finance.product.types.FixOrFloat;
 import finance.product.types.LoanOrDeposit;
@@ -21,7 +22,7 @@ public class Sample5 {
 
 //		for(int i = 0; i < 10; i++) {
 
-			Cash cash = new Cash();
+			Cash cash = new CashImpl();
 
 			cash.setCounterpartyID("ABC_BANK");
 			cash.setCurrency("JPY");

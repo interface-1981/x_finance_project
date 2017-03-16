@@ -3,8 +3,9 @@ package sample;
 import java.util.Date;
 
 import finance.product.model.FX;
+import finance.product.model.impl.FXImpl;
 import finance.product.service.ProductService;
-import finance.product.service.ProductServiceImpl;
+import finance.product.service.impl.ProductServiceImpl;
 
 public class Sample4 {
 
@@ -15,7 +16,7 @@ public class Sample4 {
 
 		for(int i = 0; i < 2000; i++) {
 
-			FX fx = new FX();
+			FX fx = new FXImpl();
 			//fx.setTradeID("121213");
 
 			fx.setCounterpartyID("ABC_BANK");

@@ -1,5 +1,7 @@
 package web.action.product;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.struts2.convention.annotation.Action;
@@ -24,13 +26,18 @@ public class FxAction extends AbstractAction implements ModelDriven<FX>{
 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+    private FX fx;
     public int tradeid;
     public List<String> currencyList = CommonConstant.CURRENCY_LIST;
-    private FX fx = new FX();
 
     public String execute() throws Exception {
     	if(tradeid == 0) {
 
+    		Calendar effectiveDate = Calendar.getInstance();
+    		effectiveDate.setTime(new Date());
+    		effectiveDate.add(Calendar.DATE, 2);
+    		fx.setEffectiveDate(effectiveDate.getTime());
     	} else {
     		productService.initialize(this.getModel(), tradeid);
     	}
@@ -46,13 +53,8 @@ public class FxAction extends AbstractAction implements ModelDriven<FX>{
 
 	@Override
 	public FX getModel() {
-		if(this.fx == null) {
-			this.createModel();
-		}
-		return fx;
+		return this.fx;
 	}
 
-	private void createModel() {
-		this.fx = new FX();
-	}
+
 }

@@ -1,143 +1,59 @@
 package finance.product.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import finance.product.entity.Cashflow;
-import finance.product.entity.Leg;
 import finance.product.types.AmortType;
 import finance.product.types.FixOrFloat;
 import finance.product.types.LoanOrDeposit;
 import finance.product.types.RateIndex;
 import finance.product.types.Term;
 
-public class Cash extends IRModel{
+public interface Cash extends Product{
 
-	public Cash() {
-		super.getTrade().setProduct(ProductType.Cash.toString());
-		List<Leg> legs = new ArrayList<Leg>();
-		Leg leg = new Leg();
-		legs.add(leg);
-		super.getTrade().setLegs(legs);
-		super.setProductType(ProductType.Cash);
-	}
+	public LoanOrDeposit getLoanOrDeposit();
+	public void setLoanOrDeposit(LoanOrDeposit loanOrDeposit);
 
-	public LoanOrDeposit getLoanOrDeposit(){
+	public Date getStartDate();
+	public void setStartDate(Date startDate);
 
-		if(LoanOrDeposit.Deposit.payOrRec.toString().equals(super.getTrade().getLegs().get(0).getPayOrRec())){
-			return LoanOrDeposit.Deposit;
-		} else if(LoanOrDeposit.Loan.payOrRec.equals(super.getTrade().getLegs().get(0).getPayOrRec())){
-			return LoanOrDeposit.Loan;
-		} else {
-			return null;
-		}
-	}
-	public void setLoanOrDeposit(LoanOrDeposit loanOrDeposit){
-		super.getTrade().getLegs().get(0).setPayOrRec(loanOrDeposit.payOrRec);
-	}
+	public Date getMaturityDate();
+	public void setMaturityDate(Date maturityDate);
 
-	public Date getStartDate(){
-		return super.getTrade().getStartDate();
-	}
-	public void setStartDate(Date startDate){
-		super.getTrade().setStartDate(startDate);
-	}
+	public String getCurrency();
+	public void setCurrency(String currency);
 
-	public Date getMaturityDate(){
-		return super.getTrade().getMaturityDate();
-	}
-	public void setMaturityDate(Date maturityDate){
-		super.getTrade().setExpiryDate(maturityDate);
-		super.getTrade().setMaturityDate(maturityDate);
+	public int getPrincipalAmount();
+	public void setPrincipalAmount(int amount);
 
-	}
+	public FixOrFloat getFixOrFloat();
+	public void setFixOrFloat(FixOrFloat fixOrFloatTypes);
 
-	public String getCurrency(){
-		return super.getTrade().getLegs().get(0).getCurrency();
-	}
-	public void setCurrency(String currency){
-		super.getTrade().getLegs().get(0).setCurrency(currency);
-	}
+	public AmortType getAmortType();
+	public void setAmortType(AmortType amortType);
 
-	public int getPrincipalAmount(){
-		return super.getTrade().getLegs().get(0).getPrincipalAmount();
-	}
-	public void setPrincipalAmount(int amount){
-		super.getTrade().getLegs().get(0).setPrincipalAmount(amount);
-	}
+	public double getRate();
+	public void setRate(double rate);
 
-	public FixOrFloat getFixOrFloat(){
-		return super.getFixOrFloat(super.getTrade().getLegs().get(0).getFixOrFloat());
-	}
-	public void setFixOrFloat(FixOrFloat fixOrFloatTypes){
-		super.getTrade().getLegs().get(0).setFixOrFloat(fixOrFloatTypes.toString());
-	}
+	public double getSpread();
+	public void setSpread(double rate);
 
-	public AmortType getAmortType(){
-		return super.getAmortType(super.getTrade().getLegs().get(0).getAmortType());
-	}
-	public void setAmortType(AmortType amortType){
-		super.getTrade().getLegs().get(0).setAmortType(amortType.toString());
-	}
+	public void setRateIndex(RateIndex rateIndex);
+	public RateIndex getRateIndex();
 
-	public double getRate() {
-		return super.getTrade().getLegs().get(0).getRate();
-	}
-	public void setRate(double rate) {
-		super.getTrade().getLegs().get(0).setRate(rate);
-	}
-	public double getSpread() {
-		return 0;//super.getTrade().getLegs().get(0).getRate();
-	}
-	public void setSpread(double rate) {
-		//super.getTrade().getLegs().get(0).setRate(rate);
-	}
+	public void setPaymentFrequency(Term term);
+	public Term getPaymentFrequency();
 
-	public void setRateIndex(RateIndex rateIndex){
-		super.getTrade().getLegs().get(0).setRateIndex(rateIndex.rateIndexID);
-	}
-	public RateIndex getRateIndex() {
+	public Term getAmortFrequency();
+	public void setAmortFrequency(Term term);
 
-		return super.getRateIndex(super.getTrade().getLegs().get(0).getRateIndex());
-	}
-	public void setPaymentFrequency(Term term){
-		super.getTrade().getLegs().get(0).setPaymentFrequency(term.termStr);
-	}
+	public double getAmortRate();
+	public void setAmortRate(double amortRate);
 
-	public Term getPaymentFrequency() {
+	public int getAmortAmount();
+	public void setAmortAmount(int amortAmount);
 
-		return super.getTerm(super.getTrade().getLegs().get(0).getPaymentFrequency());
-	}
-
-	public Term getAmortFrequency() {
-
-		return super.getTerm(super.getTrade().getLegs().get(0).getAmortFrequency());
-	}
-	public void setAmortFrequency(Term term){
-		super.getTrade().getLegs().get(0).setAmortFrequency(term.termStr);
-	}
-	public double getAmortRate(){
-		return super.getTrade().getLegs().get(0).getAmortRate();
-	}
-
-	public void setAmortRate(double amortRate){
-		super.getTrade().getLegs().get(0).setAmortRate(amortRate);
-	}
-
-	public int getAmortAmount(){
-		return super.getTrade().getLegs().get(0).getAmortAmount();
-	}
-
-	public void setAmortAmount(int amortAmount){
-		super.getTrade().getLegs().get(0).setAmortAmount(amortAmount);
-	}
-
-	public List<Cashflow> getCashflows() {
-		return this.getTrade().getLegs().get(0).getCashflows();
-	}
-	public void setCashflows(List<Cashflow> cashflows) {
-		this.getTrade().getLegs().get(0).setCashflows(cashflows);
-	}
-
+	public List<Cashflow> getCashflows();
+	public void setCashflows(List<Cashflow> cashflows);
 }

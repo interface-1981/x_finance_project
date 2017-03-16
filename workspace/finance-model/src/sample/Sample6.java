@@ -6,8 +6,9 @@ import java.util.List;
 import finance.product.dto.TradeSummery;
 import finance.product.dto.TradeSummeryFilter;
 import finance.product.model.FX;
+import finance.product.model.impl.FXImpl;
 import finance.product.service.ProductService;
-import finance.product.service.ProductServiceImpl;
+import finance.product.service.impl.ProductServiceImpl;
 
 
 public class Sample6 {
@@ -15,7 +16,7 @@ public class Sample6 {
 	public static void main(String[] args) throws ParseException {
 		// TODO 自動生成されたメソッド・スタブ
 
-		FX fx = new FX();
+		FX fx = new FXImpl();
 		System.out.println(fx.getBuyCurrency());
 		ProductService service = new ProductServiceImpl();
 		service.initialize(fx, 23);

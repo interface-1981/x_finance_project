@@ -8,7 +8,8 @@
       http://www.springframework.org/schema/context
       http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!--<context:component-scan base-package="web.service.dummy" />-->
-    <context:component-scan base-package="finance.product.service" />
+	<context:component-scan base-package="web.service.dummy" />
+    <!--<context:component-scan base-package="finance.product.service" />-->
 
+	<context:component-scan base-package="finance.product.model.impl" />
 </beans>
