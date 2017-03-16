@@ -39,17 +39,14 @@ public abstract class IRProduct extends ProductImpl{
 			lastPayDate.setTime(super.getTrade().getStartDate());
 
 			Calendar fixedDate;
-			Calendar lastFixedDate;
 			if(FixOrFloat.Float.equals(this.getFixOrFloat(l.getFixOrFloat()))) {
 				fixedDate = Calendar.getInstance();
 				fixedDate.setTime(super.getTrade().getStartDate());
 				fixedDate.add(Calendar.MONTH, this.getRateIndex(l.getRateIndex()).termNum);
-
 			} else {
 				fixedDate = CommonConstants.MAX_DATE_CALENDAR;
 			}
-
-			lastFixedDate = Calendar.getInstance();
+			Calendar lastFixedDate = Calendar.getInstance();
 			lastFixedDate.setTime(super.getTrade().getStartDate());
 
 			Calendar amortDate = Calendar.getInstance();
@@ -227,10 +224,9 @@ public abstract class IRProduct extends ProductImpl{
 				|| fixedDate.getTime().getTime() > payDate.getTime()) {
 
 			this.addReset(resets, lastFixedDate, fixedDate, lastFixedDate.getTime(), payDate, leg);
-			if(FixOrFloat.Fixed.toString().equals(leg.getFixOrFloat())){
+			if(FixOrFloat.Fixed.equals(leg.getFixOrFloat()){
 				lastFixedDate.setTime(payDate);
 			}
-
 		} else {
 			while(fixedDate.getTime().getTime() <= payDate.getTime()) {
 				this.addReset(resets, lastFixedDate, fixedDate, lastFixedDate.getTime(), fixedDate.getTime(), leg);

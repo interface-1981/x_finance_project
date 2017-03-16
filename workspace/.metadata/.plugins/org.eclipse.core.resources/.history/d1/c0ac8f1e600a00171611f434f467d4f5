@@ -196,7 +196,10 @@ public abstract class IRProduct extends ProductImpl{
 				}
 				//リセットの設定
 				List<Reset> resets = new ArrayList<Reset>();
-				lastFixedDate.setTime(fixedDate.getTime());
+				if (FixOrFloat.Float.toString().equals(l.getFixOrFloat())) {
+					lastFixedDate.setTime(fixedDate.getTime());
+				}
+
 				this.addReset(resets, lastFixedDate, fixedDate, lastPayDate.getTime(), super.getTrade().getMaturityDate(), l);
 				c.setResets(resets);
 
@@ -226,10 +229,10 @@ public abstract class IRProduct extends ProductImpl{
 		if(FixOrFloat.Fixed.equals(leg.getFixOrFloat())
 				|| fixedDate.getTime().getTime() > payDate.getTime()) {
 
-			this.addReset(resets, lastFixedDate, fixedDate, lastFixedDate.getTime(), payDate, leg);
 			if(FixOrFloat.Fixed.toString().equals(leg.getFixOrFloat())){
 				lastFixedDate.setTime(payDate);
 			}
+			this.addReset(resets, lastFixedDate, fixedDate, lastFixedDate.getTime(), payDate, leg);
 
 		} else {
 			while(fixedDate.getTime().getTime() <= payDate.getTime()) {
