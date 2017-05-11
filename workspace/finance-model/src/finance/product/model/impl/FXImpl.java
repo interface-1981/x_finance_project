@@ -7,12 +7,12 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import finance.common.types.CashflowType;
+import finance.common.types.Position;
+import finance.common.types.ProductType;
 import finance.product.entity.Cashflow;
 import finance.product.entity.Leg;
 import finance.product.model.FX;
-import finance.product.types.CashflowType;
-import finance.product.types.Position;
-import finance.product.types.ProductType;
 
 @Component
 @Scope("prototype")

@@ -7,15 +7,15 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import finance.common.types.AmortType;
+import finance.common.types.FixOrFloat;
+import finance.common.types.LoanOrDeposit;
+import finance.common.types.ProductType;
+import finance.common.types.RateIndex;
+import finance.common.types.Term;
 import finance.product.entity.Cashflow;
 import finance.product.entity.Leg;
 import finance.product.model.Cash;
-import finance.product.types.AmortType;
-import finance.product.types.FixOrFloat;
-import finance.product.types.LoanOrDeposit;
-import finance.product.types.ProductType;
-import finance.product.types.RateIndex;
-import finance.product.types.Term;
 
 @Component
 @Scope("prototype")

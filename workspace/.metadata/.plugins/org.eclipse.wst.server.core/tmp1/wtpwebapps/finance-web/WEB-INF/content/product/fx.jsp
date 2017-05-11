@@ -14,7 +14,7 @@
       </div>
       <div class="col-sm-6" >
         <div class="col-sm-4">
-          <label class="control-label">CounterpartyID:</label>
+          <label class="control-label">Counterparty:</label>
         </div>
         <div class="col-sm-8">
           <s:textfield name="counterpartyID" cssClass="form-control" />
@@ -23,7 +23,7 @@
           <label class="control-label">EffectiveDate:</label>
         </div>
         <div class="col-sm-8">
-          <div class="input-group date" id="dp3" data-date="%{effectiveDate}"  data-date-format="yyyy/mm/dd">
+          <div class="input-group date" data-date="%{effectiveDate}"  data-date-format="yyyy/mm/dd">
             <s:textfield name="effectiveDate" cssClass="form-control date-form" value="%{toString(effectiveDate)}"/>
             <span class="input-group-addon"><span class="add-on glyphicon glyphicon-th"></span></span>
           </div>

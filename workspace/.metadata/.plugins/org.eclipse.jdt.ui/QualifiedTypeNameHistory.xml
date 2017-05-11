@@ -21,4 +21,7 @@
 <fullyQualifiedTypeName name="javax.swing.tree.FixedHeightLayoutCache"/>
 <fullyQualifiedTypeName name="product.types.FixOrFloat"/>
 <fullyQualifiedTypeName name="product.types.AmortType"/>
+<fullyQualifiedTypeName name="finance.market.model.YieldCurve"/>
+<fullyQualifiedTypeName name="finance.market.service.MarketDataService"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
 </qualifiedTypeNameHistroy>

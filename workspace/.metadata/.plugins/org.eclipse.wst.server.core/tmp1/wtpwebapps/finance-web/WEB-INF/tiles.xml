@@ -47,6 +47,10 @@
       <put-attribute name="body" value="/WEB-INF/content/product/trade-summery.jsp" />
     </definition>
 
+    <definition name="yieldcurve-view" extends="base">
+      <put-attribute name="title" value="YieldCurve" />
+      <put-attribute name="body" value="/WEB-INF/content/market/yieldcurve.jsp" />
+    </definition>
 
 </tiles-definitions>
 

@@ -1,7 +1,7 @@
 package finance.product.model;
 
+import finance.common.types.ProductType;
 import finance.product.entity.Trade;
-import finance.product.types.ProductType;
 
 public interface Product {
 

@@ -19,7 +19,7 @@ public class Sample6 {
 		FX fx = new FXImpl();
 		System.out.println(fx.getBuyCurrency());
 		ProductService service = new ProductServiceImpl();
-		service.initialize(fx, 23);
+		service.load(fx, 23);
 		List<TradeSummery> list = service.getTradeSummery(new TradeSummeryFilter());
 		for(TradeSummery t : list) {
 

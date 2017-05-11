@@ -59,7 +59,7 @@ public class ProductServiceDummy implements ProductService{
 	}
 
 	@Override
-	public void initialize(Product arg0, int arg1) {
+	public void load(Product arg0, int arg1) {
 		// TODO 自動生成されたメソッド・スタブ
 		if (productList.size() >= arg1) {
 

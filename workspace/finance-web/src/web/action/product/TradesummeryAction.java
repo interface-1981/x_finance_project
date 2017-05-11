@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import finance.product.dto.TradeSummery;
 import finance.product.dto.TradeSummeryFilter;
 import finance.product.service.ProductService;
+import web.action.AbstractAction;
 
 @Namespace("/")
 @ParentPackage("tiles-default")

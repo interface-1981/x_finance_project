@@ -104,7 +104,7 @@
 		<item value="false" key="RemoveFinal"/>
 	</section>
 	<section name="JarPackageWizard">
-		<item value="false" key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES"/>
+		<item value="true" key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES"/>
 		<item value="" key="JarManifestWizardPage.MANIFEST_LOCATION"/>
 		<item value="false" key="JarManifestWizardPage.SEAL_JAR"/>
 		<item value="true" key="JarPackageWizardPage.COMPRESS"/>
@@ -123,6 +123,8 @@
 		<item value="false" key="JarManifestWizardPage.SAVE_MANIFEST"/>
 		<item value="false" key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="finance-web\WebContent\WEB-INF\lib\finance-model.jar"/>
+			<item value="finance-web/WebContent/WEB-INF/lib/finance-model.jar"/>
 			<item value="banking-web\WebContent\WEB-INF\lib\banking-product.jar"/>
 			<item value="banking-web/WebContent/WEB-INF/lib/banking-product.jar"/>
 		</list>

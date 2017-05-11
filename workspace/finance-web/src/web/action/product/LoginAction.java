@@ -4,6 +4,8 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
 
+import web.action.AbstractAction;
+
 @Results({
 @Result(name = "success", location = "login.jsp"),
 @Result(name = "error", location = "login.jsp"),

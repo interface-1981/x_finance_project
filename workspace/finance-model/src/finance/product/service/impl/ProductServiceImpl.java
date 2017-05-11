@@ -12,8 +12,8 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.query.NativeQuery;
 import org.springframework.stereotype.Component;
 
-import finance.common.AbstractDBAccessService;
 import finance.common.CommonUtil;
+import finance.common.service.AbstractDBAccessService;
 import finance.product.dto.TradeSummery;
 import finance.product.dto.TradeSummeryFilter;
 import finance.product.entity.Cashflow;
@@ -130,7 +130,7 @@ public class ProductServiceImpl extends AbstractDBAccessService implements Produ
 	}
 
 	@Override
-	public void initialize(Product product, int tradeID) {
+	public void load(Product product, int tradeID) {
 		product.setTrade(this.getTrade(tradeID));
 
 	}

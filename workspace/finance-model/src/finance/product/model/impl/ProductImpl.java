@@ -1,5 +1,8 @@
 package finance.product.model.impl;
 
+import finance.common.CommonUtil;
+import finance.common.types.ProductType;
+import finance.common.types.Term;
 import finance.product.entity.Cashflow;
 import finance.product.entity.Cashflow.CashflowPK;
 import finance.product.entity.Leg;
@@ -7,8 +10,6 @@ import finance.product.entity.Reset;
 import finance.product.entity.Reset.ResetPK;
 import finance.product.entity.Trade;
 import finance.product.model.Product;
-import finance.product.types.ProductType;
-import finance.product.types.Term;
 
 public abstract class ProductImpl implements Product{
 
@@ -105,17 +106,7 @@ public abstract class ProductImpl implements Product{
 
 	public Term getTerm(String termStr) {
 
-		if(Term._1m.termStr.equals(termStr)){
-			return Term._1m;
-		}else if(Term._3m.termStr.equals(termStr)){
-			return Term._3m;
-		}else if(Term._6m.termStr.equals(termStr)){
-			return Term._6m;
-		}else if(Term._12m.termStr.equals(termStr)){
-			return Term._12m;
-		}else {
-			return null;
-		}
+		return CommonUtil.getTerm(termStr);
 	}
 
 

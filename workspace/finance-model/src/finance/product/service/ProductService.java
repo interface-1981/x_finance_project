@@ -13,5 +13,5 @@ public interface ProductService  {
 
 	public List<TradeSummery> getTradeSummery(TradeSummeryFilter filter );
 
-	public void initialize(Product product, int tradeID);
+	public void load(Product product, int tradeID);
 }

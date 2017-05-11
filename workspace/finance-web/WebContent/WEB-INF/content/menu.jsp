@@ -46,6 +46,12 @@
                   <li><a href="#" >Account</a></li>
                 </ul>
               </li>
+              <li style="border-left : solid 1px #bbbbbb;" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Market<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="<s:url value="/yieldcurve"/>" >YieldCurve</a></li>
+                </ul>
+              </li>
             </ul>
             <!--
             <ul class="nav navbar-nav navbar-right">

@@ -4,14 +4,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import finance.common.types.AmortType;
+import finance.common.types.FixOrFloat;
+import finance.common.types.LoanOrDeposit;
+import finance.common.types.Term;
 import finance.product.model.Cash;
 import finance.product.model.impl.CashImpl;
 import finance.product.service.ProductService;
 import finance.product.service.impl.ProductServiceImpl;
-import finance.product.types.AmortType;
-import finance.product.types.FixOrFloat;
-import finance.product.types.LoanOrDeposit;
-import finance.product.types.Term;
 
 public class Sample5 {
 

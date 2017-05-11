@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import finance.product.model.FX;
 import finance.product.service.ProductService;
+import web.action.AbstractAction;
 import web.common.CommonConstant;
 
 @Namespace("/")
@@ -39,7 +40,7 @@ public class FxAction extends AbstractAction implements ModelDriven<FX>{
     		effectiveDate.add(Calendar.DATE, 2);
     		fx.setEffectiveDate(effectiveDate.getTime());
     	} else {
-    		productService.initialize(this.getModel(), tradeid);
+    		productService.load(this.getModel(), tradeid);
     	}
         return "success";
     }

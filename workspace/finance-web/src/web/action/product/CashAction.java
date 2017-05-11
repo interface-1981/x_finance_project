@@ -11,13 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ModelDriven;
 
+import finance.common.types.AmortType;
+import finance.common.types.FixOrFloat;
+import finance.common.types.LoanOrDeposit;
+import finance.common.types.RateIndex;
+import finance.common.types.Term;
 import finance.product.model.Cash;
 import finance.product.service.ProductService;
-import finance.product.types.AmortType;
-import finance.product.types.FixOrFloat;
-import finance.product.types.LoanOrDeposit;
-import finance.product.types.RateIndex;
-import finance.product.types.Term;
+import web.action.AbstractAction;
 import web.common.CommonConstant;
 
 @Namespace("/")
@@ -42,7 +43,7 @@ public class CashAction extends AbstractAction implements ModelDriven<Cash>{
     		this.cash.setLoanOrDeposit(LoanOrDeposit.Loan);
     		this.cash.setAmortType(AmortType.None);
     	} else {
-    		productService.initialize(this.getModel(), tradeid);
+    		productService.load(this.getModel(), tradeid);
     	}
         return "success";
     }

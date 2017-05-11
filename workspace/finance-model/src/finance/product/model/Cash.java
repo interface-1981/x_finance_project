@@ -3,12 +3,12 @@ package finance.product.model;
 import java.util.Date;
 import java.util.List;
 
+import finance.common.types.AmortType;
+import finance.common.types.FixOrFloat;
+import finance.common.types.LoanOrDeposit;
+import finance.common.types.RateIndex;
+import finance.common.types.Term;
 import finance.product.entity.Cashflow;
-import finance.product.types.AmortType;
-import finance.product.types.FixOrFloat;
-import finance.product.types.LoanOrDeposit;
-import finance.product.types.RateIndex;
-import finance.product.types.Term;
 
 public interface Cash extends Product{
 

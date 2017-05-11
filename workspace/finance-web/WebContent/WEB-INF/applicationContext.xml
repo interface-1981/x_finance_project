@@ -12,4 +12,6 @@
     <!--<context:component-scan base-package="finance.product.service" />-->
 
 	<context:component-scan base-package="finance.product.model.impl" />
+	<context:component-scan base-package="finance.market.model.impl" />
+
 </beans>

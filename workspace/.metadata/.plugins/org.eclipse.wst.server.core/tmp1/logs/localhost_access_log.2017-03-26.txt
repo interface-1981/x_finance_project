@@ -1,0 +1,3 @@
+0:0:0:0:0:0:0:1 - - [26/Mar/2017:06:07:08 +0900] "GET /finance-web/yieldcurve HTTP/1.1" 200 22846
+0:0:0:0:0:0:0:1 - - [26/Mar/2017:06:07:08 +0900] "GET /finance-web/js/flot/jquery.flot.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [26/Mar/2017:06:07:08 +0900] "POST /finance-web/yieldcurvegraph HTTP/1.1" 200 2

@@ -1,0 +1,111 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<script type="text/javascript" src="js/flot/jquery.js"></script>
+<script type="text/javascript" src="js/flot/jquery.flot.js"></script>
+
+<script type="text/javascript">
+
+function viewGraph(){
+
+	var data
+	 $.post(
+		'./yieldcurvegraph',
+		$('#yieldcurve-form').serializeArray(),
+		function(json){
+
+			//alert(json);
+			var plot = $.plot($("#placeholder"),[json]);
+		},
+		'json'
+	 );
+}
+
+$(function(){
+    // 「.modal-open」をクリック
+    $('.modal-open').click(function(){
+    	alert("qqq")
+        // オーバーレイ用の要素を追加
+        $('body').append('<div class="modal-overlay"></div>');
+        // オーバーレイをフェードイン
+        $('.modal-overlay').fadeIn('slow');
+
+        // モーダルコンテンツのIDを取得
+        var modal = '#' + $(this).attr('data-target');
+        // モーダルコンテンツの表示位置を設定
+        modalResize();
+         // モーダルコンテンツフェードイン
+        $(modal).fadeIn('slow');
+
+        // 「.modal-overlay」あるいは「.modal-close」をクリック
+        $('.modal-overlay, .modal-close').off().click(function(){
+            // モーダルコンテンツとオーバーレイをフェードアウト
+            $(modal).fadeOut('slow');
+            $('.modal-overlay').fadeOut('slow',function(){
+                // オーバーレイを削除
+                $('.modal-overlay').remove();
+            });
+        });
+
+        // リサイズしたら表示位置を再取得
+        $(window).on('resize', function(){
+            modalResize();
+        });
+
+        // モーダルコンテンツの表示位置を設定する関数
+        function modalResize(){
+            // ウィンドウの横幅、高さを取得
+            var w = $(window).width();
+            var h = $(window).height();
+
+            // モーダルコンテンツの表示位置を取得
+            var x = (w - $(modal).outerWidth(true)) / 2;
+            var y = (h - $(modal).outerHeight(true)) / 2;
+
+            // モーダルコンテンツの表示位置を設定
+            $(modal).css({'left': x + 'px','top': y + 'px'});
+        }
+
+    });
+});
+</script>
+
+<s:form id="yieldcurve-form" cssClass="form-horizontal" action="/yieldcurve/regist">
+  <div class="form-group">
+    <a data-target="con1" class="modal-open">リンク1</a>
+    <div id="con1" class="col-sm-12 modal-content">
+      <div class="col-sm-6" >
+        <s:iterator value="inputGridPointList" status="term">
+          <div class="col-sm-2">
+            <label class="control-label"><s:property value="term" />:</label>
+            <s:hidden name="inputGridPointList[%{#term.index}].term" />
+          </div>
+          <div class="col-sm-10">
+            <s:textfield name="inputGridPointList[%{#term.index}].rate" cssClass="form-control"/>
+          </div>
+        </s:iterator>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="col-sm-12">
+        <div class="col-sm-12"  style="border-bottom : solid 1px #bbbbbb; margin-bottom: 15px;">
+          <label class="control-label" ><h5 style="color: Red;">Graph</h5></label>
+        </div>
+        <div class="col-sm-3">
+          <s:select name="interpolateMethod" list="interpolateMethodList"   cssClass="form-control"/>
+        </div>
+        <div class="col-sm-12">
+          <div id="placeholder" style="width:1200px;height:300px;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="col-sm-12">
+        <div class="col-sm-12"  style="border-top : solid 1px #bbbbbb; padding-top: 15px; margin-top: 15px;">
+          <s:submit value="Save" cssClass="btn btn-primary"/>
+          <input type="button" value="ViewGraph" class="btn btn-primary" onclick="viewGraph()"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</s:form>

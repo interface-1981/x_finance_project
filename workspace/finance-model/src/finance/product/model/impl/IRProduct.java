@@ -7,15 +7,15 @@ import java.util.List;
 
 import finance.common.CommonConstants;
 import finance.common.CommonUtil;
+import finance.common.types.AmortType;
+import finance.common.types.CashflowType;
+import finance.common.types.FixOrFloat;
+import finance.common.types.Position;
+import finance.common.types.RateIndex;
 import finance.product.entity.Cashflow;
 import finance.product.entity.Leg;
 import finance.product.entity.Reset;
 import finance.product.entity.Reset.ResetPK;
-import finance.product.types.AmortType;
-import finance.product.types.CashflowType;
-import finance.product.types.FixOrFloat;
-import finance.product.types.Position;
-import finance.product.types.RateIndex;
 
 public abstract class IRProduct extends ProductImpl{
 
